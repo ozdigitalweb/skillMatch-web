@@ -29,6 +29,8 @@
  * CONSTRUCTOR: roda automaticamente quando usamos "new Vaga(...)".
  * THIS: dentro da classe, "this" aponta para o objeto que está
  * sendo criado/usado no momento.
+// RF09/RF10 (herança): VagaFrontEnd é uma especialização de Vaga.
+// Toda VagaFrontEnd "é uma" Vaga, mas com o campo extra "nivel".
  */
 export class Vaga {
   /**
