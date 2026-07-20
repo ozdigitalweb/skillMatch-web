@@ -11,6 +11,8 @@
 //
 // Nenhuma regra de negócio nem manipulação de DOM mora aqui -
 // só a "cola" entre os três módulos.
+// Fluxo: dados.js (busca) -> motor.js (calcula) -> ui.js (mostra).
+// main.js nunca calcula nem desenha nada sozinho, só chama quem sabe fazer isso.
 // ============================================================
 
 import {
