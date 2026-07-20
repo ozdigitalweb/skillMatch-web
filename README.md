@@ -84,7 +84,7 @@ Este é um projeto **estático** (HTML + CSS + JS puro): não precisa de servido
 
 O planejamento e o acompanhamento das tarefas foram feitos em um quadro Trello, organizado em backlog, premissas do projeto e colunas de fluxo (A Fazer → Em Progresso → Em Revisão → Concluído).
 
-🔗 **Quadro Trello:** `<inserir link público do Trello aqui>`
+🔗 **Quadro Trello:** `https://trello.com/b/XuWI2NM3/skillmatch-web`
 
 ## 🌱 Possíveis melhorias futuras
 
