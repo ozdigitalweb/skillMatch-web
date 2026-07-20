@@ -67,9 +67,11 @@ export async function buscarVagas() {
 // ============================================================
 
 /**
- * Salva o perfil do candidato no localStorage, convertendo o
+* Salva o perfil do candidato no localStorage, convertendo o
  * objeto em texto (JSON.stringify), já que localStorage só
- * guarda strings.
+ * guarda strings. O mesmo vale para o histórico: é preciso
+ * usar JSON.parse() para transformar o texto salvo de volta
+ * em objeto/array ao recuperar.
  *
  * @param {object} perfil
  */
