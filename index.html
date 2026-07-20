@@ -1,0 +1,230 @@
+<!--
+  ============================================================
+  INDEX.HTML - ESTRUTURA DA PÁGINA (SPA de uma tela só)
+  ------------------------------------------------------------
+  Este arquivo só contém a "casca" HTML: cabeçalho, formulário
+  de perfil, área de resultados e rodapé. Nenhum conteúdo
+  dinâmico é escrito aqui à mão - os cards de vaga, o destaque
+  da melhor vaga, a recomendação de estudo e o histórico são
+  todos criados via JavaScript (document.createElement) em
+  ui.js, a partir dos dados vindos de motor.js e dados.js.
+
+  Único <script> da página, carregado como MÓDULO ES
+  (type="module"), o que permite usar import/export entre os
+  arquivos dados.js, motor.js, ui.js e main.js.
+  ============================================================
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillMatch Web — Compatibilidade com vagas Front-End</title>
+  <meta
+    name="description"
+    content="Descubra o quanto seu perfil combina com vagas de front-end júnior e receba uma recomendação de estudo personalizada."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Google+Sans+Flex:wght@700;800&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Fontes do Google (Montserrat, JetBrains Mono, Google Sans Flex) e o CSS próprio do projeto -->
+  <link rel="stylesheet" href="./assets/styles/index.style.css" />
+</head>
+<body>
+
+  <!-- ======= CABEÇALHO: logo + slogan, fixo no topo da página ======= -->
+  <header class="cabecalho">
+    <div class="cabecalho__conteudo">
+      <img
+        class="cabecalho__logo"
+        src="./assets/img/logo.png"
+        alt="SkillMatch Web"
+      />
+      <p class="cabecalho__slogan">Compare seu perfil com vagas de front-end júnior</p>
+    </div>
+  </header>
+
+  <!-- ======= HERO: título de impacto + histórico de consultas ======= -->
+  <section class="hero">
+    <h1 class="hero__titulo">SkillMatch</h1>
+    <p class="hero__subtitulo">
+      Descubra a sua compatibilidade com as nossas vagas e receba
+      recomendações personalizadas de estudo!
+    </p>
+
+    <!--
+      HISTÓRICO DE CONSULTAS
+      A <ul id="lista-historico"> começa vazia: quem preenche os <li>
+      é a função renderizarHistorico() em ui.js, lendo os dados
+      salvos no localStorage por dados.js (obterHistorico()).
+      O botão "Limpar histórico" dispara limparHistorico() (dados.js)
+      através do callback registrado em aoClicarLimparHistorico() (ui.js).
+    -->
+    <section class="secao-historico" aria-labelledby="titulo-historico">
+      <div class="secao-historico__cabecalho">
+        <div>
+          <h2 id="titulo-historico">Histórico de consultas</h2>
+          <p class="secao-historico__legenda">
+            Fica salvo neste navegador (localStorage) — mostra as últimas
+            consultas feitas neste dispositivo.
+          </p>
+        </div>
+        <button type="button" id="botao-limpar-historico" class="botao-limpar-historico">
+          Limpar histórico
+        </button>
+      </div>
+      <ul id="lista-historico" class="lista-historico"></ul>
+    </section>
+  </section>
+
+  <main class="conteudo">
+
+    <!--
+      ======= FORMULÁRIO DE PERFIL (RF01 / RF10) =======
+      novalidate: desliga a validação nativa do navegador porque
+      o projeto faz sua PRÓPRIA validação em JS (validarPerfil,
+      em ui.js), para poder mostrar as mensagens de erro do jeito
+      que o projeto quiser.
+      O envio (submit) é capturado por aoEnviarFormulario() em
+      ui.js, que chama evento.preventDefault() para a página não
+      recarregar, e então dispara executarAnalise() em main.js.
+    -->
+    <section class="secao-formulario" aria-labelledby="titulo-formulario">
+      <h2 id="titulo-formulario">Seu perfil</h2>
+
+      <form id="form-perfil" novalidate>
+        <div class="campo">
+          <label for="campo-nome">Nome</label>
+          <input type="text" id="campo-nome" name="nome" placeholder="Ex.: Ana Silva" required />
+        </div>
+
+        <div class="campo">
+          <label for="campo-area">Área de atuação</label>
+          <select id="campo-area" name="area" required>
+            <option value="" disabled selected>Selecione uma área</option>
+            <option value="Front-End">Front-End</option>
+            <option value="Back-End">Back-End</option>
+            <option value="Full-Stack">Full-Stack</option>
+            <option value="Mobile">Mobile</option>
+            <option value="UX/UI Design">UX/UI Design</option>
+            <option value="QA / Testes">QA / Testes</option>
+            <option value="DevOps">DevOps</option>
+            <option value="Dados / Data Science">Dados / Data Science</option>
+            <option value="Suporte Técnico">Suporte Técnico</option>
+            <option value="Outra">Outra</option>
+          </select>
+        </div>
+
+        <!--
+          Todas as caixas compartilham o mesmo name="habilidades",
+          o que permite ler todas de uma vez em ui.js com
+          document.querySelectorAll('input[name="habilidades"]')
+          e filtrar só as marcadas (.checked) em
+          obterPerfilDoFormulario().
+        -->
+        <fieldset class="campo campo--habilidades">
+          <legend>Selecione suas habilidades</legend>
+          <div class="checkboxes">
+            <label><input type="checkbox" name="habilidades" value="JavaScript" /> JavaScript</label>
+            <label><input type="checkbox" name="habilidades" value="HTML" /> HTML</label>
+            <label><input type="checkbox" name="habilidades" value="CSS" /> CSS</label>
+            <label><input type="checkbox" name="habilidades" value="GitHub" /> GitHub</label>
+            <label><input type="checkbox" name="habilidades" value="Kanban" /> Kanban</label>
+            <label><input type="checkbox" name="habilidades" value="Lógica de Programação" /> Lógica de Programação</label>
+            <label><input type="checkbox" name="habilidades" value="Arrow Functions" /> Arrow Functions</label>
+            <label><input type="checkbox" name="habilidades" value="Objetos" /> Objetos</label>
+            <label><input type="checkbox" name="habilidades" value="Funções" /> Funções</label>
+            <label><input type="checkbox" name="habilidades" value="VS Code" /> VS Code</label>
+          </div>
+        </fieldset>
+
+        <div class="campo">
+          <label for="campo-experiencia">Experiência (em meses)</label>
+          <input type="number" id="campo-experiencia" name="experiencia" min="0" placeholder="Ex.: 3" />
+        </div>
+
+        <button type="submit" class="botao-analisar">Analisar compatibilidade</button>
+      </form>
+    </section>
+
+    <div class="conector" aria-hidden="true"></div>
+
+    <!--
+      ======= RESULTADOS =======
+      Todos os elementos abaixo começam VAZIOS (ou "hidden") no
+      HTML e são preenchidos dinamicamente pelas funções
+      "renderizar*" de ui.js depois que executarAnalise() (main.js)
+      calcula os resultados com motor.js:
+
+        #estado-inicial      -> escondido após o 1º envio (ocultarEstadoInicial)
+        #status-vagas        -> os 3 estados: carregando / vazio / erro
+                                 (aria-live="polite" avisa leitores de tela)
+        #destaque-melhor     -> vaga com maior compatibilidade (RF06)
+        #recomendacao-estudo -> texto gerado por gerarRecomendacao() (RF05)
+        #contador-analises   -> contador via closure (RF08)
+        #lista-resultados    -> um <article class="card-vaga"> por vaga,
+                                 criado em criarCardResultado() (ui.js)
+    -->
+    <section class="secao-resultados" aria-labelledby="titulo-resultados">
+      <h2 id="titulo-resultados">Resultado da análise</h2>
+
+      <div id="estado-inicial" class="estado-inicial">
+        <h3>Como usar</h3>
+        <ol>
+          <li>Preencha seu <strong>nome</strong> no formulário ao lado.</li>
+          <li>Escolha sua <strong>área de atuação</strong> no menu.</li>
+          <li>Marque as <strong>habilidades</strong> que você já tem.</li>
+          <li>(Opcional) Informe seus <strong>meses de experiência</strong>.</li>
+          <li>Clique em <strong>"Analisar compatibilidade"</strong> para ver o resultado.</li>
+        </ol>
+      </div>
+
+      <p id="status-vagas" role="status" aria-live="polite" hidden></p>
+
+      <div id="destaque-melhor" class="destaque-melhor"></div>
+      <div id="recomendacao-estudo" class="recomendacao"></div>
+      <p id="contador-analises" class="contador"></p>
+
+      <div id="lista-resultados" class="lista-resultados"></div>
+    </section>
+
+  </main>
+
+  <section class="sobre" aria-labelledby="titulo-sobre">
+    <h2 id="titulo-sobre">Sobre o SkillMatch</h2>
+    <p>
+      Esta interface foi desenvolvida para oferecer uma navegação simples,
+      intuitiva e agradável, facilitando o acesso às principais
+      funcionalidades do sistema. O layout é responsivo e organizado,
+      proporcionando uma boa experiência tanto em computadores quanto em
+      dispositivos móveis. A estrutura prioriza clareza na apresentação das
+      informações, com componentes visuais modernos e de fácil utilização.
+      Além disso, o design busca equilibrar estética, acessibilidade e
+      desempenho para tornar a interação do usuário mais eficiente.
+    </p>
+  </section>
+
+  <!-- ======= RODAPÉ: autoria e link do repositório ======= -->
+  <footer class="rodape">
+    <p>Desenvolvido por Marcelo Krauthein</p>
+    <p>© 2026 SkillMatch - Todos os direitos reservados</p>
+    <p>
+      Repositório no GitHub —
+      <a href="https://github.com/ozdigitalweb/skillMatch-web" target="_blank" rel="noopener noreferrer">
+        github.com/ozdigitalweb/skillMatch-web
+      </a>
+    </p>
+  </footer>
+
+  <!--
+    Ponto de entrada da aplicação. type="module" habilita
+    import/export entre os arquivos e faz o navegador executar
+    este script só depois que o HTML acima já existe no DOM
+    (comportamento padrão de scripts type="module").
+  -->
+  <script type="module" src="./assets/scripts/main.js"></script>
+</body>
+</html>

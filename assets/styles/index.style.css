@@ -1,0 +1,726 @@
+/* ============================================================
+   INDEX.STYLE.CSS
+   ------------------------------------------------------------
+   Identidade visual baseada nas telas de referência do produto
+   SkillMatch: azul vívido sobre fundo lavanda claro, cards
+   brancos arredondados com sombra suave, selos em formato de
+   pílula (Alta/Média/Baixa), barra de progresso e tags de
+   habilidade.
+
+   Fontes: Google Sans Flex (extra-bold) para títulos e números
+   grandes; JetBrains Mono para rótulos, selos, botões e navegação
+   (o mesmo contraste "bold arredondado + mono" das telas de
+   referência); Montserrat para texto corrido.
+
+   Layout em Flexbox, mobile-first.
+   ============================================================ */
+
+:root {
+  --cor-azul:        #2563EB;
+  --cor-azul-escuro: #1D4ED8;
+  --cor-fundo:       #F4F5FA;
+  --cor-cartao:      #FFFFFF;
+  --cor-borda:       #E5E7EB;
+  --cor-texto:       #111827;
+  --cor-texto-suave: #6B7280;
+  --cor-roxo:        #7C3AED;
+  --cor-roxo-escuro: #6D28D9;
+
+  --cor-alta:     #059669;
+  --cor-alta-bg:  #D1FAE5;
+  --cor-media:    #D97706;
+  --cor-media-bg: #FEF3C7;
+  --cor-baixa:    #DC2626;
+  --cor-baixa-bg: #FEE2E2;
+
+  --raio:      1rem;       /* cards */
+  --raio-pill: 9999px;     /* botões, selos, tags, pills de habilidade */
+  --espaco: clamp(1rem, 2vw, 1.5rem);
+  --sombra: 0 1px 2px rgba(16, 24, 40, 0.06), 0 1px 3px rgba(16, 24, 40, 0.06);
+
+  --fonte-display: "Google Sans Flex", system-ui, sans-serif;
+  --fonte-mono:    "JetBrains Mono", ui-monospace, monospace;
+  --fonte-corpo:   "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-corpo);
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  line-height: 1.55;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------- Cabeçalho ---------------- */
+
+.cabecalho {
+  background: var(--cor-cartao);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cabecalho__conteudo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem var(--espaco);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.cabecalho__logo {
+  height: clamp(2.25rem, 4.5vw, 2.75rem);
+  width: auto;
+  flex-shrink: 0;
+}
+
+.cabecalho__slogan {
+  margin: 0;
+  font-family: var(--fonte-mono);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--cor-texto-suave);
+}
+
+/* ---------------- Hero ---------------- */
+
+.hero {
+  padding: clamp(2rem, 6vw, 3.5rem) var(--espaco) clamp(1.25rem, 3vw, 2rem);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.hero__titulo {
+  margin: 0 0 0.5rem;
+  font-family: var(--fonte-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  color: var(--cor-texto);
+  line-height: 1.05;
+}
+
+.hero__subtitulo {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--cor-texto-suave);
+}
+
+/* ---------------- Layout principal (Flexbox) ---------------- */
+
+.conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 var(--espaco) var(--espaco);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.secao-formulario,
+.secao-resultados {
+  background: var(--cor-cartao);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: var(--espaco);
+  flex: 1 1 20rem;
+}
+
+.secao-formulario h2,
+.secao-resultados h2 {
+  margin-top: 0;
+  font-family: var(--fonte-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  color: var(--cor-texto-suave);
+}
+
+/* Conector entre as duas seções: uma barra fina em gradiente. */
+.conector {
+  height: 0.3rem;
+  border-radius: var(--raio-pill);
+  background: linear-gradient(90deg, var(--cor-azul), #93C5FD);
+  margin: 1.1rem 0;
+}
+
+/* ---------------- Formulário ---------------- */
+
+#form-perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.campo label {
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cor-texto-suave);
+}
+
+.campo input,
+.campo select {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.6rem;
+  font-family: var(--fonte-corpo);
+  font-size: 1rem;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+.campo select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--cor-azul) 50%),
+    linear-gradient(135deg, var(--cor-azul) 50%, transparent 50%);
+  background-position: calc(100% - 1.2rem) center, calc(100% - 0.9rem) center;
+  background-size: 0.3rem 0.3rem, 0.3rem 0.3rem;
+  background-repeat: no-repeat;
+}
+
+.campo input:focus-visible,
+.campo select:focus-visible {
+  outline: 2px solid var(--cor-azul);
+  outline-offset: 1px;
+}
+
+/* ---- Habilidades: pills de seleção (como "CORE SKILLSET" na referência) ---- */
+
+.campo--habilidades {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.campo--habilidades legend {
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--cor-texto-suave);
+  padding: 0 0 0.35rem;
+}
+
+.checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.checkboxes label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--raio-pill);
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  font-family: var(--fonte-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cor-texto);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Esconde a caixa nativa (mas mantém acessível/focável) - quem
+   muda de aparência é o <label> ao redor, via :has(). */
+.checkboxes input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.checkboxes label:has(input:checked) {
+  background: var(--cor-azul);
+  border-color: var(--cor-azul);
+  color: #fff;
+}
+
+.checkboxes label:has(input:focus-visible) {
+  outline: 2px solid var(--cor-azul);
+  outline-offset: 2px;
+}
+
+.botao-analisar {
+  align-self: flex-start;
+  padding: 0.85rem 1.75rem;
+  border: none;
+  border-radius: var(--raio-pill);
+  background: var(--cor-azul);
+  color: #fff;
+  font-family: var(--fonte-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.botao-analisar:hover {
+  background: var(--cor-azul-escuro);
+}
+
+.botao-analisar:focus-visible {
+  outline: 2px solid var(--cor-azul-escuro);
+  outline-offset: 2px;
+}
+
+/* ---------------- Status ---------------- */
+
+.estado-inicial {
+  background: var(--cor-fundo);
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.estado-inicial h3 {
+  margin: 0 0 0.6rem;
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cor-texto);
+}
+
+.estado-inicial ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+.estado-inicial strong {
+  color: var(--cor-texto);
+}
+
+#status-vagas {
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.6rem;
+  background: var(--cor-media-bg);
+  border: 1px solid #FDE7B0;
+  color: #92400E;
+  font-size: 0.9rem;
+}
+
+/* ---------------- Destaque da melhor vaga ---------------- */
+
+.destaque-melhor {
+  background: var(--cor-cartao);
+  border: 2px solid var(--cor-alta);
+  border-radius: var(--raio);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.destaque-melhor:empty {
+  display: none;
+}
+
+.destaque-melhor__selo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--raio-pill);
+  background: var(--cor-alta-bg);
+  color: var(--cor-alta);
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.destaque-melhor__titulo {
+  font-family: var(--fonte-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin: 0.6rem 0 0.15rem;
+  color: var(--cor-texto);
+}
+
+.destaque-melhor__percentual {
+  font-family: var(--fonte-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+/* ---------------- Recomendação de estudo ---------------- */
+
+.recomendacao {
+  background: linear-gradient(135deg, var(--cor-roxo), var(--cor-roxo-escuro));
+  color: #fff;
+  border-radius: var(--raio);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.recomendacao:empty {
+  display: none;
+}
+
+.recomendacao::before {
+  content: "Recomendação de estudo";
+  display: block;
+  font-family: var(--fonte-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  margin-bottom: 0.4rem;
+}
+
+.contador {
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  color: var(--cor-texto-suave);
+  margin: 0 0 1rem;
+}
+
+/* ---------------- Selos de classificação ---------------- */
+
+.selo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--raio-pill);
+  font-family: var(--fonte-mono);
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.selo--alta  { background: var(--cor-alta-bg);  color: var(--cor-alta); }
+.selo--media { background: var(--cor-media-bg); color: var(--cor-media); }
+.selo--baixa { background: var(--cor-baixa-bg); color: var(--cor-baixa); }
+
+.texto--alta  { color: var(--cor-alta); }
+.texto--media { color: var(--cor-media); }
+.texto--baixa { color: var(--cor-baixa); }
+
+/* ---------------- Lista de cards (Flexbox) ---------------- */
+
+.lista-resultados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card-vaga {
+  flex: 1 1 16rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 1.1rem 1.25rem;
+  background: var(--cor-cartao);
+  box-shadow: var(--sombra);
+}
+
+.card-vaga__cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.card-vaga h3 {
+  margin: 0 0 0.2rem;
+  font-family: var(--fonte-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--cor-texto);
+}
+
+.card-vaga__meta {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+.card-vaga__percentual-bloco {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+.card-vaga__percentual-numero {
+  font-family: var(--fonte-display);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.card-vaga__percentual-label {
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  color: var(--cor-texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.barra-progresso {
+  width: 100%;
+  height: 0.5rem;
+  background: var(--cor-borda);
+  border-radius: var(--raio-pill);
+  overflow: hidden;
+  margin: 0.6rem 0 0.85rem;
+}
+
+.barra-progresso__fill {
+  height: 100%;
+  border-radius: var(--raio-pill);
+}
+
+.barra-progresso__fill--alta  { background: var(--cor-alta); }
+.barra-progresso__fill--media { background: var(--cor-media); }
+.barra-progresso__fill--baixa { background: var(--cor-baixa); }
+
+.tags-habilidades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--raio-pill);
+  font-family: var(--fonte-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.tag--encontrada {
+  background: var(--cor-alta-bg);
+  color: var(--cor-alta);
+}
+
+.tag--faltante {
+  background: #F1F2F6;
+  color: var(--cor-texto-suave);
+}
+
+/* ---------------- Histórico de consultas ---------------- */
+/* Vive dentro do .hero agora, por isso não repete max-width/padding */
+
+.secao-historico {
+  margin-top: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.secao-historico__cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.botao-limpar-historico {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-pill);
+  background: var(--cor-cartao);
+  color: var(--cor-baixa);
+  font-family: var(--fonte-mono);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.botao-limpar-historico:hover {
+  background: var(--cor-baixa-bg);
+  border-color: var(--cor-baixa);
+}
+
+.botao-limpar-historico:focus-visible {
+  outline: 2px solid var(--cor-baixa);
+  outline-offset: 2px;
+}
+
+.secao-historico h2 {
+  font-family: var(--fonte-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  color: var(--cor-azul);
+  margin: 0 0 0.35rem;
+}
+
+.secao-historico__legenda {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+}
+
+.lista-historico {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.item-historico {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 1rem;
+  background: var(--cor-cartao);
+  border: 1px solid var(--cor-borda);
+  border-radius: 0.6rem;
+  padding: 0.75rem 1rem;
+  box-shadow: var(--sombra);
+}
+
+.item-historico p {
+  margin: 0;
+}
+
+.item-historico__quem {
+  font-weight: 700;
+  color: var(--cor-texto);
+}
+
+.item-historico__resultado {
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+.item-historico__quando {
+  margin-left: auto;
+  font-family: var(--fonte-mono);
+  font-size: 0.75rem;
+  color: var(--cor-texto-suave);
+}
+
+.item-historico__vazio {
+  list-style: none;
+  color: var(--cor-texto-suave);
+  font-size: 0.9rem;
+}
+
+/* ---------------- Sobre ---------------- */
+
+.sobre {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 var(--espaco) clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.sobre h2 {
+  font-family: var(--fonte-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  color: var(--cor-azul);
+  margin: 0 0 0.75rem;
+}
+
+.sobre p {
+  margin: 0;
+  color: var(--cor-texto-suave);
+}
+
+/* ---------------- Rodapé ---------------- */
+
+.rodape {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--cor-texto-suave);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.rodape p {
+  margin: 0.2rem 0;
+}
+
+.rodape a {
+  color: var(--cor-azul);
+  font-weight: 600;
+}
+
+.rodape a:hover {
+  color: var(--cor-azul-escuro);
+}
+
+/* ---------------- Media queries (telas maiores) ---------------- */
+
+@media (min-width: 48rem) {
+  .conteudo {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .secao-formulario {
+    flex: 0 0 20rem;
+    position: sticky;
+    top: var(--espaco);
+  }
+
+  .secao-resultados {
+    flex: 1 1 auto;
+  }
+
+  .conector {
+    width: 0.3rem;
+    height: auto;
+    align-self: stretch;
+    background: linear-gradient(180deg, var(--cor-azul), #93C5FD);
+    margin: 0;
+  }
+}
