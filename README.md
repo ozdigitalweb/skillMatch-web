@@ -2,7 +2,7 @@
 
 > Descubra o quanto seu perfil combina com as vagas de front-end júnior — e o que estudar para chegar lá.
 
-## 📖 Sobre o projeto
+## Sobre o projeto
 
 O **SkillMatch Web** é a evolução do motor de compatibilidade criado no Mini-Projeto do Módulo 01 (que rodava apenas no console). Agora ele ganhou uma interface de verdade: uma aplicação web (Single Page) onde o candidato preenche seu próprio perfil, vê as vagas disponíveis com o percentual de compatibilidade calculado automaticamente e recebe uma recomendação de estudo baseada nas habilidades que mais faltam.
 
@@ -10,7 +10,7 @@ O **SkillMatch Web** é a evolução do motor de compatibilidade criado no Mini-
 
 Recrutadores e candidatos gastam tempo comparando manualmente os requisitos de uma vaga com o perfil de quem está se candidatando. O SkillMatch automatiza essa análise: a partir de um formulário simples, o sistema cruza as habilidades do candidato com o catálogo de vagas e mostra, de forma visual e imediata, qual vaga é mais compatível e o que precisa ser desenvolvido para melhorar essa compatibilidade.
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 - Formulário de perfil (nome, área, habilidades e tempo de experiência) com validação acessível
 - Catálogo de vagas carregado dinamicamente via `fetch` (`assets/dados/vagas.json`)
@@ -22,7 +22,7 @@ Recrutadores e candidatos gastam tempo comparando manualmente os requisitos de u
 - Layout responsivo mobile-first (Flexbox)
 - Tratamento dos três estados de rede: carregando, vazio e erro
 
-## 🛠️ Tecnologias utilizadas
+## Tecnologias utilizadas
 
 | Camada | Tecnologia |
 |---|---|
@@ -55,15 +55,23 @@ skillmatch-web/
 
 Os três módulos seguem a divisão **dados × regras × tela**, orquestrados pelo `main.js`, e se comunicam por `import`/`export`.
 
-## 🚀 Como executar
+## Como executar
+
+### Acessar online
+
+O projeto está publicado e pode ser acessado diretamente pelo link:
+
+**https://ozdigitalweb.github.io/skillMatch-web/**
+
+### Rodar localmente (opcional)
 
 Este é um projeto **estático** (HTML + CSS + JS puro): não precisa de servidor de back-end nem de banco de dados. Porém, como usa módulos ES e `fetch`, ele **não funciona abrindo o arquivo diretamente** (`file://`) — é preciso rodar em um servidor local.
 
 1. Clone o repositório:
-   ```bash
+```bash
    git clone <link-do-repositorio>
    cd skillmatch-web
-   ```
+```
 2. Abra a pasta no VS Code.
 3. Instale a extensão **Live Server** (se ainda não tiver).
 4. Clique com o botão direito em `index.html` → **Open with Live Server**.
@@ -71,7 +79,7 @@ Este é um projeto **estático** (HTML + CSS + JS puro): não precisa de servido
 
 > ⭐ Alternativa opcional: se o `package.json` estiver configurado, rode `npm install` e depois `npm start` para subir um servidor local via `live-server`.
 
-## 🧭 Fluxo de uso
+## Fluxo de uso
 
 1. Ao abrir a página, o formulário de perfil é exibido (ou o perfil salvo anteriormente é recuperado do `localStorage`).
 2. O usuário preenche nome, área e habilidades.
@@ -84,9 +92,9 @@ Este é um projeto **estático** (HTML + CSS + JS puro): não precisa de servido
 
 O planejamento e o acompanhamento das tarefas foram feitos em um quadro Trello, organizado em backlog, premissas do projeto e colunas de fluxo (A Fazer → Em Progresso → Em Revisão → Concluído).
 
-🔗 **Quadro Trello:** `https://trello.com/b/XuWI2NM3/skillmatch-web`
+**Quadro Trello:** `https://trello.com/b/XuWI2NM3/skillmatch-web`
 
-## 🌱 Possíveis melhorias futuras
+## Possíveis melhorias futuras
 
 - Adicionar filtro e ordenação de vagas (por modalidade, salário ou compatibilidade)
 - Implementar tema claro/escuro persistido no `localStorage`
@@ -94,7 +102,7 @@ O planejamento e o acompanhamento das tarefas foram feitos em um quadro Trello, 
 - Publicar o projeto no GitHub Pages
 - Consumir uma API pública de vagas reais no lugar do `vagas.json` local
 
-## 🌿 Sobre o versionamento
+## Sobre o versionamento
 
 O desenvolvimento seguiu o fluxo:
 
@@ -104,14 +112,14 @@ O desenvolvimento seguiu o fluxo:
 
 Commits seguem mensagens diretas e no modo imperativo (ex.: `implementa cálculo de compatibilidade`, `corrige validação do formulário`).
 
-## 🎥 Vídeo de demonstração
+## Vídeo de demonstração
 
 🔗 `<inserir link do vídeo (Google Drive ou YouTube não listado) aqui>`
 
-## 🤖 Uso de IA
+## Uso de IA
 
 Partes deste projeto contaram com apoio de IA (geração do catálogo de vagas fictícias, rascunho de funções e sugestões de acessibilidade/responsividade), sempre revisadas, adaptadas e validadas manualmente antes de entrarem no código final — nenhum trecho foi usado sem entendimento completo do que faz.
 
-## 👤 Autor
+## Autor
 
-Projeto individual desenvolvido como avaliação final do Módulo 01 — Front-End React, SENAI.
+Projeto individual desenvolvido Por Marcelo Krauthein Corrêa, como avaliação final do Módulo 01 — Front-End React, SENAI.
