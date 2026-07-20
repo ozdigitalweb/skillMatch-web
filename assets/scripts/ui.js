@@ -7,6 +7,10 @@
 //
 // motor.js e dados.js não sabem que existe uma tela - só
 // devolvem dados prontos para este módulo desenhar.
+// Cada card é criado via document.createElement (não usamos
+// innerHTML com template string) para evitar risco de XSS e
+// manter o controle sobre cada elemento criado.
+
 // ============================================================
 
 // ---- Referências aos elementos do HTML (cacheadas uma vez) ----
