@@ -114,7 +114,7 @@ Commits seguem mensagens diretas e no modo imperativo (ex.: `implementa cálculo
 
 ## Vídeo de demonstração
 
-`<https://drive.google.com/file/d/1Q00e4c3hNXiULyQDq_YxV9RvXYEnp4bW/view?usp=sharing>`
+https://drive.google.com/drive/folders/13XypSuLi07uryoK53OZrgz5BoKzy3ePH?usp=sharing
 
 ## Uso de IA
 
